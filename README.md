@@ -1,4 +1,4 @@
-# chemhow v0.1.0-delta (draft)
+# ChemHow 0.1.0-delta (draft)
 This is currently a symbolic test for chemical elements, atoms, molecules,
 compounds, reactions and others.
 

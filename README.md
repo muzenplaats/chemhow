@@ -1,4 +1,4 @@
-# kemijn
+# kemijn v0.1.0-delta
 This is currently a symbolic test for chemical elements, atoms, molecules, compounds, reactions and others.
 
 ## Symbolic test

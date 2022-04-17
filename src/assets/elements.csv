@@ -1,2 +1,5 @@
-# From NIST Database
-- First, the periodic table;
+Name,       Symbol, Atomic Number, Standard Atomic Weight, Ground State, Ground-State Configuration, Ionization Energy (eV), Phase, Group,    Period
+Hydrogen,   H,            1,              1.008,             2^S_{1/2},   1s,                             13.5984,            gas,   1 IA,      1
+Helium,     He,           2,              4.0026,            1^S_{0},     1s^2,                           24.5874,            gas,  18 IIIVA,   1
+Lithium,    Li,           3,              6.94,              2^S_{1/2},   1s^22s,                          5.3917,           solid,  1 IA,      2
+...

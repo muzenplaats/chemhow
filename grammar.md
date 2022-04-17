@@ -13,6 +13,7 @@ var patterns = {
   '.': '\\.',
   ',': ',',
   digit: '\\d',
+  sign: '[\\+\\-]',
   captial: '[A-Z]',
   small: '[a-z]'
 }
@@ -40,8 +41,9 @@ atomic-weight := (digit | '{' digit+ '}') '^'
 ## Molecule
 ```vbnf
 Molecule := ((functional-group | list) SS)+  // => Molecule{}
-functional-group := (atom ('_' (digit | '{' digit+ '}'))?)+
+functional-group := (atom aggregation?)+
 list := '(' functional-group (SS functional-group)* ')'
+aggregation := '_' (digit | '{' digit+ '}'
 ```
 
 ## Radical
@@ -49,3 +51,7 @@ list := '(' functional-group (SS functional-group)* ')'
 Radical := Molecule '-' '.' | '.' '-' Molecule  // => Radical{}
 ```
 
+## Ion
+```vbnf
+Ion := Molecule '^' (sign | '{' digit* sign '}')  // => Ion{}
+```

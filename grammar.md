@@ -6,6 +6,8 @@ The grammar is shown in a variation of BNF form with commented productions.
 var patterns = {
   '{': '{',
   '}': '}',
+  ',': ',',
+  '+': '+',
   digit: '\\d',
   captial: '[A-Z]',
   small: '[a-z]'
@@ -14,7 +16,7 @@ var patterns = {
 
 ## (Root?)
 ```vbnf
-Equation := eof //
+Equation := eof  // production Equation
 ```
 ```
 ->, <-, <=>, <~->, <-~>
@@ -23,12 +25,14 @@ Equation := eof //
 ## Atom
 ```vbnf
 Atom := atomic-number? atomic-weight? capital small? |
-        atomic-weight atomic-number capital small
+        atomic-weight atomic-number capital small |
+        '{' atomic-weight ',' atomic-number '}' '+' capital small  // abbreviat.
+        // production: Atom
 atomic-number := (digit | '{' digit+ '}') '_'
 atomic-weight := (digit | '{' digit+ '}') '^'
 ```
 
 ## Molecule
 ```vbnf
-Molecule := eof  //
+Molecule := eof  // production: Molecule
 ```

@@ -40,7 +40,7 @@ atomic-weight := (digit | '{' digit+ '}') '^'
 ## Molecule
 ```vbnf
 Molecule := ((functional-group | list) SS)+  // => Molecule{}
-functional-group := (atom ('_' digit | '{' digit+ '}'))+
+functional-group := (atom ('_' (digit | '{' digit+ '}'))?)+
 list := '(' functional-group (SS functional-group)* ')'
 ```
 

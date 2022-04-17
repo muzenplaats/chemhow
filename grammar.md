@@ -17,6 +17,7 @@ var patterns = {
   small: '[a-z]'
 }
 ```
+Note: the `SS` stands for skipping spaces.
 
 ## (Root?)
 ```vbnf
@@ -38,9 +39,9 @@ atomic-weight := (digit | '{' digit+ '}') '^'
 
 ## Molecule
 ```vbnf
-Molecule := (functional-group | list)+  // => Molecule{}
+Molecule := ((functional-group | list) SS)+  // => Molecule{}
 functional-group := (atom ('_' digit | '{' digit+ '}'))+
-list := '(' functional-group+ ')'
+list := '(' functional-group (SS functional-group)* ')'
 ```
 
 ## Radical

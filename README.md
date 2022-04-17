@@ -57,5 +57,8 @@ in which `CO_2` === `O=C=O` === `::O=C=O::`.
 (Empty)
 
 ## References
-- The IUPAC names and the common names.
-- NIST Database.
+1. The IUPAC names and the common names;
+2. NIST Database;
+3. Sigma-Aldrich;
+4. Merck;
+5. AIST.

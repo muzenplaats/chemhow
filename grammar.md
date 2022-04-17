@@ -13,8 +13,9 @@ var patterns = {
   '.': '\\.',
   ',': ',',
   digit: '\\d',
+  digits: '\\d+',
   sign: '[\\+\\-]',
-  captial: '[A-Z]',
+  capital: '[A-Z]',
   small: '[a-z]'
 }
 ```
@@ -30,12 +31,20 @@ Equation := eof  // production Equation
 
 ## Atom
 ```vbnf
-Atom := atomic-number? atomic-weight? capital small? |
-        atomic-weight atomic-number capital small |
-        '{' atomic-weight ',' atomic-number '}' '+' capital small  // abbreviat.
+Atom := atomic-number? atomic-weight? capital small? Terminology? |
+        atomic-weight atomic-number capital small? Terminology? |
+        '{' atomic-weight ',' atomic-number '}' '+'
+                                capital small? Terminology?  // abbreviation
         // => Atom{}
-atomic-number := (digit | '{' digit+ '}') '_'
-atomic-weight := (digit | '{' digit+ '}') '^'
+atomic-number := (digit | '{' digits '}') '_'
+atomic-weight := (digit | '{' digits '}') '^'
+```
+**Terminology**
+```vbnf
+Terminology := '(' term-symbol (':' SS configuration)? ')' |
+               '(' configuration ')'  // => Terminology
+term-symbol := digits '^' capital '_' (digit | '{' digits ('/' digits)? '}')
+configuration := (digits small ('_' (digit | '{' digits '}')))+
 ```
 
 ## Molecule
@@ -43,7 +52,7 @@ atomic-weight := (digit | '{' digit+ '}') '^'
 Molecule := ((functional-group | list) SS)+  // => Molecule{}
 functional-group := (atom aggregation?)+
 list := '(' functional-group (SS functional-group)* ')'
-aggregation := '_' (digit | '{' digit+ '}'
+aggregation := '_' (digit | '{' digits '}'
 ```
 
 ## Radical

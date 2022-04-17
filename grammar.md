@@ -4,10 +4,14 @@ The grammar is shown in a variation of BNF form with commented productions.
 ## Lexer
 ```js
 var patterns = {
-  '{': '{',
-  '}': '}',
+  '(': '\\(',
+  ')': '\\)',
+  '{': '\\{',
+  '}': '\\}',
+  '+': '\\+',
+  '-': '\\-',
+  '.': '\\.',
   ',': ',',
-  '+': '+',
   digit: '\\d',
   captial: '[A-Z]',
   small: '[a-z]'
@@ -27,12 +31,20 @@ Equation := eof  // production Equation
 Atom := atomic-number? atomic-weight? capital small? |
         atomic-weight atomic-number capital small |
         '{' atomic-weight ',' atomic-number '}' '+' capital small  // abbreviat.
-        // production: Atom
+        // => Atom{}
 atomic-number := (digit | '{' digit+ '}') '_'
 atomic-weight := (digit | '{' digit+ '}') '^'
 ```
 
 ## Molecule
 ```vbnf
-Molecule := eof  // production: Molecule
+Molecule := (functional-group | list)+  // => Molecule{}
+functional-group := (atom ('_' digit | '{' digit+ '}'))+
+list := '(' functional-group+ ')'
 ```
+
+## Radical
+```vbnf
+Radical := Molecule '-' '.' | '.' '-' Molecule  // => Radical{}
+```
+

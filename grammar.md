@@ -21,11 +21,15 @@ var patterns = {
   digits: '\\d+',
   sign: '[\\+\\-]',
   capital: '[A-Z]',
-  small: '[a-z]'
+  small: '[a-z]',
+  '//': '\/\/',
+  '/*': '\/\*',
+  '*/': '\*\/'
 }
 ```
 Note: the `SS` stands for skipping spaces and the `WS` stands for
-skipping white space.
+skipping white space. The `WS` is overwritten to include the comments 
+as shown in the grammar.
 
 
 ## ChemHow
@@ -85,4 +89,15 @@ Radical := Molecule '-' '.' | '.' '-' Molecule  // => Radical{}
 ## Ion
 ```vbnf
 Ion := Molecule '^' (sign | '{' digit* sign '}')  // => Ion{}
+```
+
+## Comment
+**Single-line comment**
+```vbnf
+SL-Comment := '//' All
+```
+
+**Multi-line comment**
+```vbnf
+ML-Comment := '/*' mlwithout('*/') '*/'
 ```

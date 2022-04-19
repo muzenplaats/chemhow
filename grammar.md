@@ -91,7 +91,7 @@ Radical := Molecule '-' '.' | '.' '-' Molecule  // => Radical{}
 Ion := Molecule '^' (sign | '{' digit* sign '}')  // => Ion{}
 ```
 
-## Comment
+## Comments
 **Single-line comment**
 ```vbnf
 SL-Comment := '//' All

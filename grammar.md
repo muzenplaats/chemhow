@@ -24,7 +24,8 @@ var patterns = {
   small: '[a-z]'
 }
 ```
-Note: the `SS` stands for skipping spaces.
+Note: the `SS` stands for skipping spaces and the `WS` stands for
+skipping white space.
 
 
 ## ChemHow
@@ -36,8 +37,8 @@ To be considered..
 
 ## Reaction
 ```vbnf
-Reaction := term arrow term   // => Reaction{}
-term := Molecule ('+' SS Molecule)*
+Reaction := term arrow WS term   // => Reaction{}
+term := Molecule ('+' SS Molecule)* WS
 arrow := '<' [-=~]{1,2} '>'? | '-' '>'  // experimental
 
 Yea // Experimental

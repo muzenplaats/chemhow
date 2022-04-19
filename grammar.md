@@ -35,13 +35,18 @@ Chem-How ::= eof  // => ChemHow{}
 To be considered..
 
 
-## Reaction
+## Reaction (experimental)
 ```vbnf
-Reaction := term arrow WS term   // => Reaction{}
+Reaction := term ('-' '>' SS term)+  // branching (ratios) or side products (yields)
+          | term arrow WS term   // => Reaction{}
 term := Molecule ('+' SS Molecule)* WS
-arrow := '<' [-=~]{1,2} '>'? | '-' '>'  // experimental
+arrow := '<' [-=~]{1,2} '>'?
 
-Yea // Experimental
+// A + B -> C + D  (81%) yield, or the branching ratio in 0.81
+//       -> E + F  (12%)
+//       -> ...
+// A + B -> C + D  (insertion; not implemented)
+//     E /
 // ->, <-,  // irreversible 
 // <=>, <~->, <-~>, <=->, <-=>. // reversible
 ```

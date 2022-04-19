@@ -41,15 +41,16 @@ To be considered..
 
 ## Reaction (experimental)
 ```vbnf
-Reaction := term ('-' '>' SS term)+  // branching (ratios) or side products (yields)
-          | term arrow WS term   // => Reaction{}
+Reaction := term ('-' '>' SS term)+ insertion?  // branching (ratios) or side products (yields)
+          | term arrow WS term insertion?  // => Reaction{}
 term := Molecule ('+' SS Molecule)* WS
 arrow := '<' [-=~]{1,2} '>'?
+insertion := (term '/' WS)+
 
 // A + B -> C + D  (81%) yield, or the branching ratio in 0.81
 //       -> E + F  (12%)
 //       -> ...
-// A + B -> C + D  (insertion; not implemented)
+// A + B -> C + D  (insertion; typically used within a circle in biology)
 //     E /
 // ->, <-,  // irreversible 
 // <=>, <~->, <-~>, <=->, <-=>. // reversible

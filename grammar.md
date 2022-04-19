@@ -8,8 +8,13 @@ var patterns = {
   ')': '\\)',
   '{': '\\{',
   '}': '\\}',
+  '<': '<',
+  '>': '>',
   '+': '\\+',
   '-': '\\-',
+  '_': '_',
+  '=': '=',
+  '~': '~',
   '.': '\\.',
   ',': ',',
   digit: '\\d',
@@ -21,12 +26,23 @@ var patterns = {
 ```
 Note: the `SS` stands for skipping spaces.
 
-## (Root?)
+
+## ChemHow
 ```vbnf
-Equation := eof  // production Equation
+Chem-How ::= eof  // => ChemHow{}
 ```
-```
-->, <-, <=>, <~->, <-~>
+To be considered..
+
+
+## Reaction
+```vbnf
+Reaction := term arrow term   // => Reaction{}
+term := Molecule ('+' SS Molecule)*
+arrow := '<' [-=~]{1,2} '>'? | '-' '>'  // experimental
+
+Yea // Experimental
+// ->, <-,  // irreversible 
+// <=>, <~->, <-~>, <=->, <-=>. // reversible
 ```
 
 ## Atom
